@@ -2,108 +2,115 @@
 
 ## 📌 Project Overview
 
-Dalam proyek ini, dilakukan analisis perilaku pelanggan menggunakan dataset transaksi ritel berisi lebih dari 100.000 baris data. Tujuannya adalah memahami pola pembelian pelanggan dan membagi mereka ke dalam segmen-segmen berbasis perilaku untuk mendukung keputusan bisnis yang lebih tepat.
+This project explores customer behavior using a retail transaction dataset with over 100,000 rows. The goal is to understand purchasing patterns and segment customers based on behavior to support more effective business decisions.
 
 ---
 
 ## 🧾 Dataset Description
 
-Dataset transaksi pelanggan terdiri dari fitur-fitur utama berikut:
+The dataset contains key features such as:
 
-- `CustomerID`: ID unik pelanggan  
-- `ProductID`: Produk yang dibeli  
-- `Quantity`, `Price`, `TotalAmount`: Detail pembelian  
-- `DiscountApplied`, `PriceAfterDiscount`: Diskon dan harga akhir  
-- `TransactionDate`: Tanggal dan waktu transaksi  
-- `PaymentMethod`, `StoreLocation`, `ProductCategory`: Info tambahan  
-- Fitur turunan: `Revenue`, `Segment`, `YearMonth`, dll.
+- `CustomerID`: Unique customer ID  
+- `ProductID`: Purchased product  
+- `Quantity`, `Price`, `TotalAmount`: Purchase details  
+- `DiscountApplied`, `PriceAfterDiscount`: Discounts and final price  
+- `TransactionDate`: Transaction timestamp  
+- `PaymentMethod`, `StoreLocation`, `ProductCategory`: Additional info  
+- Engineered features: `Revenue`, `Segment`, `YearMonth`, and more
 
 ---
 
 ## 🎯 Goals
 
-- Menganalisis perilaku pembelian pelanggan
-- Menghitung metrik perilaku utama seperti:
-  - **Recency** (berapa lama sejak pembelian terakhir)
-  - **Total Transactions**
-  - **Total Revenue**
+- Analyze customer purchasing behavior  
+- Compute key behavioral metrics:
+  - **Recency** (days since last purchase)  
+  - **Total Transactions**  
+  - **Total Revenue**  
   - **Average Order Value**
-- Melakukan **behavioral clustering** menggunakan K-Means
-- Memberikan insight bisnis berdasarkan hasil segmentasi
+- Perform **behavioral clustering** using K-Means  
+- Generate actionable business insights from segmentation
 
 ---
 
 ## 🔍 Exploratory Data Analysis
 
-Beberapa langkah EDA yang dilakukan:
+Key EDA steps included:
 
-- Distribusi jumlah transaksi per pelanggan  
-- Distribusi total pengeluaran  
-- Segmentasi awal berdasarkan label `Segment`  
-- Visualisasi time series revenue per segmen
+- Distribution of transaction counts per customer  
+- Spending distribution  
+- Initial segment breakdown  
+- Revenue trends over time per segment
 
 ---
 
 ## 📊 Behavioral Clustering
 
-### 🧠 Fitur Perilaku Pelanggan
+### 🧠 Behavioral Features
 
-| Fitur | Deskripsi |
-|-------|-----------|
-| `Recency` | Hari sejak transaksi terakhir |
-| `TotalTransactions` | Total transaksi per pelanggan |
-| `TotalRevenue` | Total pengeluaran |
-| `AvgOrderValue` | Rata-rata pengeluaran per transaksi |
+| Feature              | Description                            |
+|----------------------|----------------------------------------|
+| `Recency`            | Days since last transaction            |
+| `TotalTransactions`  | Total transactions per customer        |
+| `TotalRevenue`       | Total spending                         |
+| `AvgOrderValue`      | Average spend per transaction          |
 
 ### 🌀 Clustering Workflow
 
-- Data standardization (StandardScaler)
-- Menentukan jumlah cluster optimal dengan Elbow Method
-- Clustering dengan **KMeans**
-- Visualisasi hasil dengan **PCA 2D plot**
+- Feature standardization using `StandardScaler`  
+- Optimal cluster selection using **Elbow Method**  
+- Customer segmentation with **KMeans**  
+- Cluster visualization using **PCA 2D projection**
 
 ### 📋 Cluster Summary
 
-| Cluster | Recency | Transactions | Revenue | Avg Order | Jumlah Customer |
-|---------|---------|--------------|---------|-----------|------------------|
-| 0 | 275.6 | 1 | 156.6 | 156.6 | 33,032 |
-| 1 | 181.8 | 1 | 504.6 | 504.6 | 24,216 |
-| 2 | 118.5 | 2 | 503.2 | 247.2 | 4,621 |
-| 3 | 89.1 | 1 | 153.4 | 153.4 | 33,346 |
+| Cluster | Recency | Transactions | Revenue | Avg Order | Customers |
+|---------|---------|--------------|---------|-----------|-----------|
+| 0       | 275.6   | 1            | 156.6   | 156.6     | 33,032    |
+| 1       | 181.8   | 1            | 504.6   | 504.6     | 24,216    |
+| 2       | 118.5   | 2            | 503.2   | 247.2     | 4,621     |
+| 3       | 89.1    | 1            | 153.4   | 153.4     | 33,346    |
 
 ---
 
 ## 💡 Business Insights
 
-- **Cluster 1**: Big spenders – jarang beli tapi nilai tinggi  
-- **Cluster 2**: Pelanggan loyal – transaksi sering dan revenue tinggi  
-- **Cluster 3**: Pelanggan baru – potensial untuk di-retain  
-- **Cluster 0**: Pelanggan pasif – kandidat untuk retargeting
+- **Big Spenders** and **Frequent Buyers** contributed **47.7%** of total revenue.
+- **Champions** had the **highest transaction frequency** (1.34x per customer), signaling strong loyalty potential.
+- **Recent Customers** and **Loyal Customers** were engaged and ripe for retention strategies.
+- **Others** and **Lost** segments showed lower value, ideal for reactivation campaigns.
+
+---
+
+## 📈 Impact & Strategic Recommendations
+
+- 🎯 **Upsell Campaigns** for Big Spenders and Frequent Buyers → Estimated 10–15% revenue lift
+- 🔁 **Retention Programs** for Champions → Encourage repeat purchases
+- 🚀 **Welcome Offers** for Recent Customers → Convert to loyal buyers
+- ♻️ **Reactivation Strategies** for Lost Customers → Recover dormant users
+
+### 🧮 Simulated Impact
+
+If 20% of **Champions** make an extra purchase:
+- ➕ Estimated revenue gain: **Rp540,175**
 
 ---
 
 ## 🛠️ Tools & Libraries
 
-- Python: Pandas, NumPy, Seaborn, Matplotlib  
-- Scikit-Learn: KMeans, StandardScaler, PCA  
+- Python: `pandas`, `numpy`, `seaborn`, `matplotlib`
+- Scikit-Learn: `KMeans`, `StandardScaler`, `PCA`
 - Jupyter Notebook
-
----
-
-## 🚀 Future Improvements
-
-- Analisis tren per kategori produk
-- Segmentasi berdasarkan frekuensi waktu (bulanan, mingguan)
-- Integrasi model ke aplikasi dashboard interaktif (Streamlit)
 
 ---
 
 ## 📂 Folder Structure
 
 ```bash
-📦customer-behavior-analysis/
- ┣ 📁 notebooks/
- ┃ ┗ 📄 behavioral_clustering.ipynb
- ┣ 📄 dataset.csv
- ┣ 📄 README.md
- ┗ 📄 requirements.txt
+📦 customer-behavior-analysis/
+ ┣ 📄 df_segmented.csv
+ ┣ 📄 rfm_segmented.csv
+ ┣ 📄 retail_analytics.ipynb
+ ┣ 📄 retail_explore.ipynb
+ ┣ 📄 Retail_Transaction_Dataset.csv
+ ┗ 📄 README.md
